@@ -1,0 +1,34 @@
+databaseChangeLog:
+# Tables
+  - include:
+      file: /db/changelog/changes/create-goods-table.sql
+  - include:
+      file: /db/changelog/changes/create-masters-table.sql
+  - include:
+      file: /db/changelog/changes/create-owners-table.sql
+  - include:
+      file: /db/changelog/changes/create-cars-table.sql
+  - include:
+      file: /db/changelog/changes/create-orders-table.sql
+  - include:
+      file: /db/changelog/changes/create-services-table.sql
+  - include:
+      file: /db/changelog/changes/create-masters-orders-table.sql
+  - include:
+      file: /db/changelog/changes/create-orders-goods-table.sql
+  - include:
+      file: /db/changelog/changes/create-owners-orders-table.sql
+
+# Sequences
+  - include:
+      file: /db/changelog/changes/create-cars-seq.sql
+  - include:
+      file: /db/changelog/changes/create-owners-seq.sql
+  - include:
+      file: /db/changelog/changes/create-goods-seq.sql
+  - include:
+      file: /db/changelog/changes/create-masters-seq.sql
+  - include:
+      file: /db/changelog/changes/create-orders-seq.sql
+  - include:
+      file: /db/changelog/changes/create-services-seq.sql
