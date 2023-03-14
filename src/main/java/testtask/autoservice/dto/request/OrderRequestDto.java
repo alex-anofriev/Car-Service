@@ -12,8 +12,10 @@ public class OrderRequestDto {
     private Long carId;
     @NotBlank(message = "Problem description can not be blank")
     private String problemDescription;
-    @NotNull
+    @NotNull(message = "List of goods can not be null")
     private List<Long> goodsIds;
     @NotBlank(message = "Order status can not be blank")
     private String orderStatus;
+    @NotNull(message = "Agreement can not be null or blank")
+    private Boolean agreementToRepair;
 }

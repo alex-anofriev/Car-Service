@@ -29,11 +29,8 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     public Owner update(Owner owner) {
-        Owner ownerFromDb = findById(owner.getId());
-        ownerFromDb.getCars().stream()
-                .filter(car -> !owner.getCars().contains(car))
-                .forEach(carService::delete);
-        return ownerRepository.save(owner);
+        carService.deleteAllById(owner);
+        return findById(owner.getId());
     }
 
     @Override

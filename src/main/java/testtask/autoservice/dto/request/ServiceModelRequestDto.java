@@ -17,5 +17,5 @@ public class ServiceModelRequestDto {
     @NotBlank(message = "Service status can not be blank")
     private String serviceStatus;
     @NotNull
-    private Boolean repairAgreement;
+    private Boolean isService;
 }

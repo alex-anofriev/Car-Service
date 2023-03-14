@@ -59,6 +59,7 @@ public class MasterServiceImpl implements MasterService {
                 .stream()
                 .flatMap(order -> order.getServices().stream())
                 .filter(service -> service.getServiceStatus().equals(ServiceStatus.NOT_PAID))
+                .filter(ServiceModel::getIsService)
                 .peek(service -> serviceModelService
                         .updateStatus(service.getId(), ServiceStatus.PAID))
                 .map(ServiceModel::getPrice)

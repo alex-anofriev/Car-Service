@@ -50,4 +50,6 @@ public class Order {
     private BigDecimal costForClient;
     @Column(name = "finish_date")
     private LocalDate finishDate;
+    @Column(name = "agreement_to_repair")
+    private Boolean agreementToRepair = Boolean.TRUE;
 }

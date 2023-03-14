@@ -27,6 +27,7 @@ public class OrderMapper implements RequestDtoMapper<OrderRequestDto, Order>,
         order.setGoods(goodsService.findAllByIds(dto.getGoodsIds()));
         order.setOrderStatus(OrderStatus.valueOf(dto.getOrderStatus().toUpperCase()));
         order.setServices(List.of());
+        order.setAgreementToRepair(dto.getAgreementToRepair());
         return order;
     }
 
@@ -45,6 +46,7 @@ public class OrderMapper implements RequestDtoMapper<OrderRequestDto, Order>,
         responseDto.setServices(order.getServices().stream()
                 .map(ServiceModel::getId)
                 .toList());
+        responseDto.setAgreementToRepair(order.getAgreementToRepair());
         return responseDto;
     }
 }

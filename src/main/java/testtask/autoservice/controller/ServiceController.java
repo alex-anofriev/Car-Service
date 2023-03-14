@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import testtask.autoservice.dto.request.PaidToMasterRequestDto;
 import testtask.autoservice.dto.request.ServiceModelRequestDto;
+import testtask.autoservice.dto.request.ServiceStatusRequestDto;
 import testtask.autoservice.dto.response.ServiceModelResponseDto;
-import testtask.autoservice.mapper.PaidToMasterMapper;
 import testtask.autoservice.mapper.ServiceModelMapper;
+import testtask.autoservice.mapper.ServiceStatusMapper;
 import testtask.autoservice.model.ServiceModel;
 import testtask.autoservice.service.ServiceModelService;
 
@@ -26,7 +26,7 @@ import testtask.autoservice.service.ServiceModelService;
 public class ServiceController {
     private final ServiceModelService modelService;
     private final ServiceModelMapper serviceModelMapper;
-    private final PaidToMasterMapper paidMapper;
+    private final ServiceStatusMapper serviceStatusMapper;
 
     @PostMapping
     @Operation(summary = "Save new service")
@@ -52,9 +52,9 @@ public class ServiceController {
     @Operation(summary = "Change status of service")
     public ResponseEntity<ServiceModelResponseDto> updatePaymentStatus(
             @PathVariable Long id,
-            @RequestBody PaidToMasterRequestDto requestDto) {
+            @RequestBody ServiceStatusRequestDto requestDto) {
         ServiceModel serviceModel = modelService
-                .updateStatus(id, paidMapper.mapToModel(requestDto));
+                .updateStatus(id, serviceStatusMapper.mapToModel(requestDto));
         return ResponseEntity.ok(serviceModelMapper.mapToDto(serviceModel));
     }
 }

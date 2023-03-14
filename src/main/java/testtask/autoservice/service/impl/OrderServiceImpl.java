@@ -83,10 +83,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public BigDecimal calculateCostForClint(Long id) {
         Order order = findById(id);
-        boolean agreedForRepair = order.getServices().stream()
-                .allMatch(ServiceModel::getRepairAgreement);
-        if (!agreedForRepair) {
-            return DEFAULT_PRICE;
+        if (!order.getAgreementToRepair()) {
+            order.getServices().stream()
+                    .filter(x -> !x.getIsService())
+                    .forEach(x -> x.setIsService(true));
         }
         BigDecimal price = calculateGoodsPriceWithDiscount(order)
                 .add(calculateServicesPriceWithDiscount(order));
@@ -113,6 +113,7 @@ public class OrderServiceImpl implements OrderService {
         int ordersAmount = order.getCar().getOwner().getOrders().size();
         double discount = ordersAmount * DISCOUNT_FOR_SERVICES;
         BigDecimal totalPrice = order.getServices().stream()
+                .filter(ServiceModel::getIsService)
                 .map(ServiceModel::getPrice)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
         return totalPrice.subtract(totalPrice.multiply(BigDecimal.valueOf(discount)));

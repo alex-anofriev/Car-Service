@@ -57,8 +57,9 @@ public class OrderController {
     @Operation(summary = "Update order by id")
     public ResponseEntity<OrderResponseDto> update(@PathVariable Long id,
                                                    @RequestBody OrderRequestDto requestDto) {
-        Order order = orderMapper.mapToModel(requestDto);
-        order.setId(id);
+        Order order = orderService.findById(id);
+        order.setAgreementToRepair(requestDto.getAgreementToRepair());
+        order.setProblemDescription(requestDto.getProblemDescription());
         return ResponseEntity.ok(orderMapper.mapToDto(orderService.update(order)));
     }
 

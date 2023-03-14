@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS services (
                                  repair_agreement boolean,
                                  master_id bigint,
                                  order_id bigint,
+                                is_service boolean,
                                 CONSTRAINT fk565hd47u11qajksyfi4gqrfu0 FOREIGN KEY (master_id) REFERENCES masters(id),
                                 CONSTRAINT fknmykpsxcf4bgaecn9g3vdbc1s FOREIGN KEY (order_id) REFERENCES orders(id)
 );

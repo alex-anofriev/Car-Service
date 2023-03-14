@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class PaidToMasterRequestDto {
+public class ServiceStatusRequestDto {
     @NotBlank(message = "Status can not be blank")
     private String status;
 }

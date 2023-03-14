@@ -34,6 +34,6 @@ public class ServiceModel {
     @Enumerated(EnumType.STRING)
     @Column(name = "service_status")
     private ServiceStatus serviceStatus;
-    @Column(name = "repair_agreement")
-    private Boolean repairAgreement = Boolean.TRUE;
+    @Column(name = "is_service")
+    private Boolean isService = Boolean.TRUE;
 }

@@ -14,4 +14,5 @@ public class OrderResponseDto {
     private List<Long> goodsIds;
     private String orderStatus;
     private LocalDate finishDate;
+    private Boolean agreementToRepair;
 }

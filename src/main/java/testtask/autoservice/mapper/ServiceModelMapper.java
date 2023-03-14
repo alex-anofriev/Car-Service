@@ -24,6 +24,7 @@ public class ServiceModelMapper implements
         service.setMaster(masterService.findById(dto.getMasterId()));
         service.setServiceStatus(ServiceStatus.valueOf(dto.getServiceStatus()));
         service.setPrice(dto.getPrice());
+        service.setIsService(dto.getIsService());
         return service;
     }
 

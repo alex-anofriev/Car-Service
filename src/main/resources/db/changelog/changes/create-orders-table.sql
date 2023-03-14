@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS     orders (
                                order_status character varying(255),
                                problem_description character varying(255),
                                car_id bigint,
+                               agreement_to_repair boolean,
                                CONSTRAINT fkd2p23ixwrrt395glgi9nnbj23 FOREIGN KEY (car_id) REFERENCES cars(id)
 );
 

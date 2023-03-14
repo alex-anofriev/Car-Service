@@ -1,10 +1,12 @@
 package testtask.autoservice.service.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import testtask.autoservice.exceptions.DataProcessingException;
 import testtask.autoservice.model.Car;
+import testtask.autoservice.model.Owner;
 import testtask.autoservice.repository.CarRepository;
 import testtask.autoservice.service.CarService;
 
@@ -20,13 +22,13 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Car save(Car entity) {
-        return carRepository.save(entity);
+    public Car save(Car car) {
+        return carRepository.save(car);
     }
 
     @Override
-    public Car update(Car entity) {
-        return carRepository.save(entity);
+    public Car update(Car car) {
+        return carRepository.save(car);
     }
 
     @Override
@@ -35,12 +37,14 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void delete(Car car) {
-        carRepository.delete(car);
+    public void deleteAllById(Owner owner) {
+        carRepository.deleteAllById(owner.getCars().stream()
+                .map(Car::getId)
+                .collect(Collectors.toList()));
     }
 
     @Override
-    public List<Car> findAllById(List<Long> carsIds) {
+    public List<Car> findAllByIds(List<Long> carsIds) {
         return carRepository.findAllById(carsIds);
     }
 }
